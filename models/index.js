@@ -1,7 +1,7 @@
 'use strict';
 const express = require('express');
 const app = express();
-const db = require('./models'); // Assuming the models are in the same directory as the index.js file
+const db = require('./models'); // Update the path to the models directory if needed
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
