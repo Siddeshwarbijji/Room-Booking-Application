@@ -4,6 +4,7 @@
     "password": "RAY",
     "database": "Room-Booking",
     "host": "127.0.0.1",
+    "port": 5432, // Specify the correct port for your PostgreSQL database
     "dialect": "postgres"
   },
   "test": {
@@ -11,10 +12,12 @@
     "password": "RAY",
     "database": "Room-Booking",
     "host": "127.0.0.1",
+    "port": 5432, // Specify the correct port for your PostgreSQL database
     "dialect": "postgres"
   },
   "production": {
     "use_env_variable": "DATABASE_URL",
-    "dialect":"postgres"
+    "dialect": "postgres",
+    "ssl": true // Add this line if your production database requires SSL connection
   }
 }
