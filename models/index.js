@@ -1,18 +1,32 @@
 'use strict';
-const express = require('express');
-const app = express();
-const db = require('./models'); // Update the path to the models directory if needed
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+const fs = require('fs');
+const path = require('path');
+const Sequelize = require('sequelize');
+const basename = path.basename(__filename);
+const config = require('../config/config.json');
+const db = {};
 
-// Sync the database models and start the server
-db.sequelize.sync().then(() => {
-  const port = process.env.PORT || 3000;
-  app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+const sequelize = new Sequelize(config[process.env.NODE_ENV]);
+
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (
+      file.indexOf('.') !== 0 &&
+      file !== basename &&
+      file.slice(-3) === '.js'
+    );
+  })
+  .forEach(file => {
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+    db[model.name] = model;
   });
-}).catch(err => {
-  console.error('Database synchronization failed:', err);
+
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
 });
+
+module.exports = db;
