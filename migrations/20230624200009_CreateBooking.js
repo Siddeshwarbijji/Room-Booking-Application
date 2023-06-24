@@ -9,36 +9,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      roomId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Rooms',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'users',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
-      date: {
-        type: Sequelize.DATEONLY,
+      startTime: {
+        type: Sequelize.DATE,
         allowNull: false
       },
-      reason: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      members: {
-        type: Sequelize.INTEGER,
+      endTime: {
+        type: Sequelize.DATE,
         allowNull: false
       },
       createdAt: {
@@ -48,6 +24,16 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      roomId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Rooms',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       }
     });
   },
