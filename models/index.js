@@ -5,10 +5,7 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const config = require('../config/config.json');
 const db = {};
-const sequelize = new Sequelize(config.database, config.username, config.password, {
-  host: config.host,
-  dialect: config.dialect, // Specify the dialect here
-});
+const sequelize = new Sequelize(config[process.env.NODE_ENV]);
 fs
   .readdirSync(__dirname)
   .filter(file => {
