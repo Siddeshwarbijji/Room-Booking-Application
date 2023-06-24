@@ -7,7 +7,7 @@ const config = require('../config/config.json');
 const db = {};
 const sequelize = new Sequelize(config.database, config.username, config.password, {
   host: config.host,
-  dialect: 'postgres', // Specify the dialect here
+  dialect: postgres, // Specify the dialect here
 });
 fs
   .readdirSync(__dirname)
